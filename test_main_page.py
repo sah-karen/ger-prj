@@ -1,19 +1,22 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+from .pages.main_page import MainPage
 
-#pytest -s -v --language=es .\test_items.py
-
+#pytest -s -v --language=es .\test_main_page.py
+#pytest -v --tb=line --language=en test_main_page.py
 
 import time
 
 link = "http://selenium1py.pythonanywhere.com/"
 
-def go_to_login_page(browser):
-    login_link = browser.find_element_by_css_selector("#login_link")
-    login_link.click()
-
 def test_guest_can_go_to_login_page(browser):
-    browser.get(link)
+    page = MainPage(browser, link)
     browser.implicitly_wait(10)
-    go_to_login_page(browser)
+    page.open()
+    page.go_to_login_page()
     time.sleep(5)
+
+# def test_add_to_cart(browser):
+#     page = ProductPage(url="", browser)   # инициализируем объект Page Object
+#     page.open()                           # открываем страницу в браузере
+#     page.should_be_add_to_cart_button()   # проверяем что есть кнопка добавления в корзину
+#     page.add_product_to_cart()            # жмем кнопку добавить в корзину 
+#     page.should_be_success_message()      # проверяем что есть сообщение с нужным текстом
