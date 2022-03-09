@@ -9,10 +9,11 @@ link = "http://selenium1py.pythonanywhere.com/"
 
 def test_guest_can_go_to_login_page(browser):
     page = MainPage(browser, link)
-    browser.implicitly_wait(10)
+
     page.open()
-    page.go_to_login_page()
+    page.should_be_login_link()
     time.sleep(5)
+    #page.go_to_login_page()
 
 # def test_add_to_cart(browser):
 #     page = ProductPage(url="", browser)   # инициализируем объект Page Object
