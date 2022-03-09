@@ -6,8 +6,8 @@ from .pages.login_page import LoginPage
 
 import time
 
-#link = "http://selenium1py.pythonanywhere.com/"
-link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"
+link = "http://selenium1py.pythonanywhere.com/"
+#link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"
 
 def test_guest_can_go_to_login_page(browser):
     page = MainPage(browser, link)
@@ -15,7 +15,6 @@ def test_guest_can_go_to_login_page(browser):
     page.open()
     page.should_be_login_link()
     page.go_to_login_page()
-    time.sleep(2)
     pageLogin = LoginPage(browser, link)
     pageLogin.should_be_login_page()
 
