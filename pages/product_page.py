@@ -20,11 +20,17 @@ class ProductPage(BasePage):
         assert item_basket_cost.text == item_product_cost.text, "Prices in basket and in product page isn't equal"
 
     def should_name_equal(self):
-        items_strong = self.browser.find_elements(*ProductPageLocators.BASKET_STRONG_NAMES)
+        basket_product_name = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        basket_product_name = ''
-        names_equal = False
-        for item_strong in items_strong:
-            if item_strong.text == product_name:
-                names_equal = True
-        assert names_equal, "Names of product isn't equal"
+        assert basket_product_name == product_name, f"Names of product isn't equal {basket_product_name} {product_name}"
+
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+                "Success message is presented, but should not be"
+
+
+    def should_be_disappeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+               "Success message should be dissapeared, but not"
+    
